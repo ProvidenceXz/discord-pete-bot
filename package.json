@@ -1,0 +1,40 @@
+{
+  "name": "discord-pete-bot",
+  "version": "0.0.1",
+  "description": "Pet your goose!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "watch": "tsc -p tsconfig.json -w",
+    "test": "mocha -r ts-node/register \"tests/**/*.spec.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProvidenceXz/discord-pete-bot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "Provi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProvidenceXz/discord-pete-bot/issues"
+  },
+  "homepage": "https://github.com/ProvidenceXz/discord-pete-bot#readme",
+  "dependencies": {
+    "@types/node": "^14.14.7",
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.0.4",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "ts-mockito": "^2.6.1",
+    "ts-node": "^9.0.0"
+  }
+}
