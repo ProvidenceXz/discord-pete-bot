@@ -2,6 +2,8 @@ export const TYPES = {
     Bot: Symbol("Bot"),
     Client: Symbol("Client"),
     Token: Symbol("Token"),
-    MessageResponder: Symbol("MessageResponder"),
-    PingFinder: Symbol("PingFinder")
+    CommandHandler: Symbol("CommandHandler"),
+    Greetings: Symbol("Greetings"),
+    Actions: Symbol("Actions"),
+    Stickers: Symbol("Stickers")
 };

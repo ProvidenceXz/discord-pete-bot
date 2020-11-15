@@ -10,6 +10,7 @@ lib-cov
 
 logs
 tmp
+img
 
 # API keys and secrets
 .env

@@ -1,32 +1,34 @@
 import { Client, Message } from "discord.js";
 import { inject, injectable } from "inversify";
 import { TYPES } from "./types";
-import { MessageResponder } from "./services/message-responder";
+import { CommandHandler } from "./services/command-handler";
+import * as config from "./config.json"
 
 @injectable()
 export class Bot {
     private client: Client;
     private readonly token: string;
-    private messageResponder: MessageResponder;
+    private commandHandler: CommandHandler;
 
     constructor(
         @inject(TYPES.Client) client: Client,
         @inject(TYPES.Token) token: string,
-        @inject(TYPES.MessageResponder) messageResponder: MessageResponder) {
+        @inject(TYPES.CommandHandler) commandHandler: CommandHandler
+    ) {
         this.client = client;
         this.token = token;
-        this.messageResponder = messageResponder
+        this.commandHandler = commandHandler
     }
 
     public listen(): Promise<string> {
         this.client.on('message', (message: Message) => {
-            if (message.author.bot) {
+            if (!message.content.startsWith(config.prefix) || message.author.bot) {
                 return;
             }
 
             console.log("Message received! Contents: ", message.content);
 
-            this.messageResponder.handle(message).then(() => {
+            this.commandHandler.handle(message).then(() => {
                 console.log("Response sent!");
             }).catch(() => {
                 console.log("Response not sent.")
