@@ -1,5 +1,5 @@
-import { injectable } from "inversify";
-import * as config from ".././config.json"
+import { injectable } from "inversify"
+import * as config from "../config.json"
 
 @injectable()
 export class Stickers {
@@ -8,21 +8,23 @@ export class Stickers {
      */
     public find(s: string): string {
         // TODO: img search & algo
-        var path: string;
-        if (Math.random() > 0.5) {
-            path = config.imgDir + '/' + 'happy.png';
-        } else {
-            path = config.imgDir + '/' + 'happy2.png';
-        }
-        return path;
+        return ''
     }
     
     public hi(): string {
-        return config.imgDir + '/' + 'hi.png';
+        return config.imgDir + '/' + 'hi.png'
     }
 
-    public pet(): string {
-        return config.imgDir + '/' + 'pet.png';
+    public happy(): string {
+        if (Math.random() > 0.5) {
+            return config.imgDir + '/' + 'happy.png'
+        } else {
+            return config.imgDir + '/' + 'happy2.png'
+        }
+    }
+
+    public selfPet(): string {
+        return config.imgDir + '/' + 'pet.png'
     }
 
 }
