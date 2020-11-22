@@ -6,7 +6,7 @@ import { Bot } from "./bot";
 let bot = container.get<Bot>(TYPES.Bot);
 
 bot.listen().then(() => {
-    console.log('Logged in!')
+    console.log('Pete wakes up.')
 }).catch((error) => {
-    console.log('Oh no! ', error)
+    console.log('Something is wrong with Pete!!', error)
 });

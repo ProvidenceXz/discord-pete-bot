@@ -35,8 +35,7 @@ export class CommandHandler {
         }
 
         if (this.actions.isAction(cmd)) {
-            if (message.author.username == "Cyan") {
-                // easter egg
+            if (message.author.username == "CyanX") {
                 return message.reply("*Cyan petted himself.. how?*", { files: [this.stickers.pet()] });
             }
 

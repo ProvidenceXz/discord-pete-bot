@@ -26,12 +26,12 @@ export class Bot {
                 return;
             }
 
-            console.log("Message received! Contents: ", message.content);
+            console.log("Someone says to Pete: ", message.content);
 
             this.commandHandler.handle(message).then(() => {
-                console.log("Response sent!");
+                console.log("Pete replies!");
             }).catch(() => {
-                console.log("Response not sent.")
+                console.log("Pete didn't reply.")
             })
         });
 
