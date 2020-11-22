@@ -3,7 +3,8 @@ export const TYPES = {
     Client: Symbol("Client"),
     Token: Symbol("Token"),
     CommandHandler: Symbol("CommandHandler"),
-    Greetings: Symbol("Greetings"),
-    Actions: Symbol("Actions"),
-    Stickers: Symbol("Stickers")
-};
+    ActionManager: Symbol("ActionManager"),
+    Stickers: Symbol("Stickers"),
+    Greet: Symbol("Greet"),
+    Pet: Symbol("Pet")
+}
