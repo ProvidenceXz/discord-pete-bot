@@ -5,6 +5,7 @@ export const TYPES = {
     CommandHandler: Symbol("CommandHandler"),
     ActionManager: Symbol("ActionManager"),
     Stickers: Symbol("Stickers"),
+    Help: Symbol("Help"),
     Greet: Symbol("Greet"),
     Pet: Symbol("Pet")
 }

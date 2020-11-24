@@ -2,18 +2,16 @@ import { Message } from "discord.js"
 import { inject, injectable } from "inversify"
 import { TYPES } from "../types"
 
-import { Action } from "../interfaces"
+import { Command } from "../interfaces"
 import { Stickers } from "../services/stickers"
 
 @injectable()
-export class Greet implements Action {
+export class Help implements Command {
     /*
      * starter command Class
      */
-    name: string = 'greet'
-    description: string = 'Pete was being greeted.'
-    reaction: string = 'hi'
-    regex: RegExp = /hi\b|hello\b/i
+    name: string = 'help'
+    regex: RegExp = /help\b/i
 
     private stickers: Stickers
 
@@ -24,7 +22,7 @@ export class Greet implements Action {
     }
     
     public execute(message: Message, cmd: string): Promise<Message | Message[]> {
-        return message.reply("helo!", { files: [this.stickers.hi()] })
+        return message.reply("I know a few words...\nhi\npet")
     }
 
     public is(s: string): boolean {

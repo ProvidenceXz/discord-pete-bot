@@ -12,9 +12,7 @@ export class ActionManager {
     /**
      * Class for action related commands
      */
-    private greet: Greet
     private stickers: Stickers
-
     private actions: Collection<string, Action>
 
     constructor(
@@ -22,7 +20,6 @@ export class ActionManager {
         @inject(TYPES.Pet) pet: Pet,
         @inject(TYPES.Stickers) stickers: Stickers
     ) {
-        this.greet = greet;
         this.stickers = stickers;
         this.actions = new Collection()
         this.actions.set(greet.name, greet)
@@ -30,14 +27,15 @@ export class ActionManager {
     }
 
     public getAction(cmd: string): string {
-        for (const action of this.actions.values()) {
+        let action: Action
+        for (action of this.actions.values()) {
             if (action.is(cmd)) return action.name
         }
         return ''
     }
 
     public execute(message: Message, name: string, cmd: string): Promise<Message | Message[]> {
-        const action = this.actions.get(name)
+        const action: Action = this.actions.get(name)
         console.log(action.description)
         return action.execute(message, cmd)
     }
