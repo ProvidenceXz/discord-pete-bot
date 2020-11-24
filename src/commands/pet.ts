@@ -23,7 +23,7 @@ export class Pet implements Action {
         this.stickers = stickers
     }
     
-    public execute(message: Message, cmd: string): Promise<Message | Message[]> {
+    public execute(message: Message): Promise<Message | Message[]> {
         if (message.author.username == "CyanX") {
             return message.reply("*Cyan petted himself.. how?*", { files: [this.stickers.selfPet()] })
         }

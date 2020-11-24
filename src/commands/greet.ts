@@ -10,7 +10,7 @@ export class Greet implements Action {
     /*
      * starter command Class
      */
-    name: string = 'greet'
+    name: string = 'hi'
     description: string = 'Pete was being greeted.'
     reaction: string = 'hi'
     regex: RegExp = /hi\b|hello\b/i
@@ -23,7 +23,7 @@ export class Greet implements Action {
         this.stickers = stickers
     }
     
-    public execute(message: Message, cmd: string): Promise<Message | Message[]> {
+    public execute(message: Message): Promise<Message | Message[]> {
         return message.reply("helo!", { files: [this.stickers.hi()] })
     }
 

@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify"
 import { TYPES } from "../types"
 
 import { Command } from "../interfaces"
-import { Stickers } from "../services/stickers"
+import { ActionManager } from "../services"
 
 @injectable()
 export class Help implements Command {
@@ -13,16 +13,30 @@ export class Help implements Command {
     name: string = 'help'
     regex: RegExp = /help\b/i
 
-    private stickers: Stickers
+    private actionManager: ActionManager
 
     constructor(
-        @inject(TYPES.Stickers) stickers: Stickers
+        @inject(TYPES.ActionManager) actionManager: ActionManager
     ) {
-        this.stickers = stickers
+        this.actionManager = actionManager
     }
-    
-    public execute(message: Message, cmd: string): Promise<Message | Message[]> {
-        return message.reply("I know a few words...\nhi\npet")
+
+    public async execute(message: Message): Promise<void | Message | Message[]> {
+        const actions: string[] = this.actionManager.getActionNames()
+        const response: string[] = []
+
+        response.push("Here are some words I know...")
+        response.push(actions.join(', '))
+
+        try {
+            await message.author.send(response, { split: true })
+            if (message.channel.type === 'dm')
+                return
+            message.reply("I\'ve sent you a DM!")
+        } catch (error) {
+            console.error(`Could not send help DM to ${message.author.tag}.\n`, error)
+            message.reply("Do you have DMs disabled?")
+        }
     }
 
     public is(s: string): boolean {

@@ -4,6 +4,6 @@ export interface Command {
     name: string
     regex: RegExp
 
-    execute(message: Message, cmd: string): Promise<Message | Message[]>
+    execute(message: Message): Promise<void | Message | Message[]>
     is(s: string): boolean
 }

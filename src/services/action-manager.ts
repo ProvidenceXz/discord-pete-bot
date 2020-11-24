@@ -26,7 +26,7 @@ export class ActionManager {
         this.actions.set(pet.name, pet)
     }
 
-    public getAction(cmd: string): string {
+    public getActionName(cmd: string): string {
         let action: Action
         for (action of this.actions.values()) {
             if (action.is(cmd)) return action.name
@@ -34,9 +34,13 @@ export class ActionManager {
         return ''
     }
 
-    public execute(message: Message, name: string, cmd: string): Promise<Message | Message[]> {
-        const action: Action = this.actions.get(name)
+    public getActionNames(): string[] {
+        return Array.from(this.actions.keys())
+    }
+
+    public execute(message: Message, actionName: string): Promise<void | Message | Message[]> {
+        const action: Action = this.actions.get(actionName)
         console.log(action.description)
-        return action.execute(message, cmd)
+        return action.execute(message)
     }
 }

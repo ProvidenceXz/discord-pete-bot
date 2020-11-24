@@ -26,17 +26,18 @@ export class CommandHandler {
         this.help = help
     }
 
-    handle(message: Message): Promise<Message | Message[]> {
+    handle(message: Message): Promise<void | Message | Message[]> {
         // remove prefix
         const cmd: string = message.content.slice(config.prefix.length).trim()
 
         if (this.help.is(cmd)) {
-            return this.help.execute(message, cmd)
+            return this.help.execute(message)
         }
 
-        let action: string
-        if (action = this.actionManager.getAction(cmd)) {
-            return this.actionManager.execute(message, action, cmd)
+        // TODO: try except
+        let a: string
+        if (a = this.actionManager.getActionName(cmd)) {
+            return this.actionManager.execute(message, a)
         }
 
         return Promise.reject()
